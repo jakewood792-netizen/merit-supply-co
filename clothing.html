@@ -6,6 +6,7 @@
 <title>Clothing — Merit Supply Co.</title>
 <meta name="description" content="Clothing at Merit Supply Co. — heavyweight hoodies, cargo pants, and everyday essentials.">
 <link rel="stylesheet" href="style.css">
+<script src="https://www.paypal.com/sdk/js?client-id=BAA_9gP4AL6GfEdGqw8_JTLT4hYGFQKa8uLha7H7CEMaKKhMPPRfxdgEXr-lju6YA_XOX3BJ74M6L-XaHo&components=hosted-buttons&enable-funding=venmo&currency=USD"></script>
 </head>
 <body>
 
@@ -85,7 +86,11 @@
       <div class="card-row" style="grid-auto-flow:row; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); display:grid;">
         <article class="card">
           <div class="card-media m-clothing"><span class="tag">New</span></div>
-          <div class="card-body"><div class="name">Heavyweight Oversized Hoodie</div><div class="price">$44.00</div></div>
+          <div class="card-body">
+            <div class="name">Heavyweight Oversized Hoodie</div>
+            <div class="price">$44.00</div>
+            <div id="paypal-container-LK7SH5R38VWN4" style="margin-top:10px;"></div>
+          </div>
         </article>
         <article class="card">
           <div class="card-media m-clothing"></div>
@@ -101,6 +106,12 @@
         </article>
       </div>
       <div class="coming-soon">More clothing styles added regularly.</div>
+
+      <script>
+        paypal.HostedButtons({
+          hostedButtonId: "LK7SH5R38VWN4",
+        }).render("#paypal-container-LK7SH5R38VWN4");
+      </script>
     </section>
   </main>
 </div>
