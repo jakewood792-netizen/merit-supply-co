@@ -122,6 +122,9 @@ if (pdp && typeof PRODUCTS !== "undefined") {
           [...colorRow.children].forEach((b) => b.classList.remove("selected"));
           btn.classList.add("selected");
           setMessage("");
+          if (product.colorImageIndex && product.colorImageIndex[color] !== undefined) {
+            showSlide(product.colorImageIndex[color]);
+          }
         });
         colorRow.appendChild(btn);
       });

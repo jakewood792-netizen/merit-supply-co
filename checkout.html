@@ -90,11 +90,14 @@
   var lineItems = rawItems.map(function (item) {
     var product = PRODUCTS[item.id];
     if (!product) return null;
+    var imageIndex = (product.colorImageIndex && product.colorImageIndex[item.color] !== undefined)
+      ? product.colorImageIndex[item.color]
+      : 0;
     return {
       id: item.id,
       name: product.name,
       price: product.price,
-      image: product.images[0],
+      image: product.images[imageIndex],
       size: item.size,
       color: item.color,
       qty: item.qty,
