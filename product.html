@@ -39,78 +39,38 @@
   <a href="beauty.html">Beauty</a>
 </nav>
 
-<div class="shell">
-  <aside class="sidebar" aria-label="Shop navigation">
-    <div class="side-group">
-      <span class="eyebrow">Shop By</span>
-      <ul>
-        <li><a href="index.html">Everything</a></li>
-        <li><a href="men.html">Men</a></li>
-        <li><a href="women.html">Women</a></li>
-        <li><a href="kids.html">Kids</a></li>
-        <li><a href="unisex.html">Unisex</a></li>
-      </ul>
-    </div>
-    <div class="side-group">
-      <span class="eyebrow">Category</span>
-      <ul>
-        <li><a href="clothing.html">Clothing</a></li>
-        <li><a href="fragrance.html">Fragrance</a></li>
-        <li><a href="fitness.html">Fitness</a></li>
-        <li><a href="beauty.html">Beauty</a></li>
-      </ul>
-    </div>
-    <div class="side-group">
-      <span class="eyebrow">Discover</span>
-      <ul>
-        <li><a href="new.html">New Arrivals</a></li>
-        <li><a href="bestsellers.html">Best Sellers</a></li>
-        <li><a href="sale.html">On Sale</a></li>
-      </ul>
-    </div>
-    <div class="side-group">
-      <span class="eyebrow">Support</span>
-      <ul>
-        <li><a href="track-order.html">Track Order</a></li>
-        <li><a href="shipping-returns.html">Size Guide</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </div>
-  </aside>
+<main id="main">
+  <div class="page-content" id="pdp" style="max-width:1100px;">
+    <div class="pdp-grid">
+      <div class="pdp-media">
+        <button type="button" class="product-photo-btn" id="pdp-gallery-btn" data-gallery="" aria-label="View more photos">
+          <img src="" alt="" class="checkout-img" id="pdp-img">
+          <span class="photo-hint">Tap to view photos</span>
+        </button>
+      </div>
+      <div class="pdp-details">
+        <h1 id="pdp-name"></h1>
+        <p class="pdp-price" id="pdp-price"></p>
 
-  <main id="main">
-    <div class="page-content" id="pdp" style="max-width:1000px;">
-      <div class="pdp-grid">
-        <div class="pdp-media">
-          <button type="button" class="product-photo-btn" id="pdp-gallery-btn" data-gallery="" aria-label="View more photos">
-            <img src="" alt="" class="checkout-img" id="pdp-img">
-            <span class="photo-hint">Tap to view photos</span>
-          </button>
+        <div class="option-group">
+          <span class="eyebrow">Size</span>
+          <div class="option-row" id="pdp-sizes"></div>
         </div>
-        <div class="pdp-details">
-          <h1 id="pdp-name"></h1>
-          <p class="pdp-price" id="pdp-price"></p>
 
-          <div class="option-group">
-            <span class="eyebrow">Size</span>
-            <div class="option-row" id="pdp-sizes"></div>
-          </div>
-
-          <div class="option-group" id="pdp-color-section" hidden>
-            <span class="eyebrow">Color</span>
-            <div class="option-row" id="pdp-colors"></div>
-          </div>
-
-          <div class="pdp-actions">
-            <button type="button" class="btn btn-ghost" id="pdp-add-cart">Add to Cart</button>
-            <button type="button" class="btn btn-primary" id="pdp-buy-now">Buy Now</button>
-          </div>
-          <p class="pdp-message" id="pdp-message"></p>
+        <div class="option-group" id="pdp-color-section" hidden>
+          <span class="eyebrow">Color</span>
+          <div class="option-row" id="pdp-colors"></div>
         </div>
+
+        <div class="pdp-actions">
+          <button type="button" class="btn btn-ghost" id="pdp-add-cart">Add to Cart</button>
+          <button type="button" class="btn btn-primary" id="pdp-buy-now">Buy Now</button>
+        </div>
+        <p class="pdp-message" id="pdp-message"></p>
       </div>
     </div>
-  </main>
-</div>
+  </div>
+</main>
 
 <div class="lightbox" id="lightbox" hidden>
   <button type="button" class="lightbox-close" aria-label="Close photo viewer">&times;</button>

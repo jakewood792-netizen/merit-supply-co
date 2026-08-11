@@ -7,7 +7,7 @@ const PRODUCTS = {
   hoodie: {
     name: "Heavyweight Oversized Hoodie",
     price: 44.00,
-    images: ["images/hoodie.png"],
+    images: ["images/hoodie.png", "images/hoodie-2.jpg", "images/hoodie-3.jpg"],
     sizes: ["XS", "S", "M", "L", "XL", "XXL"],
     colors: [],
   },
