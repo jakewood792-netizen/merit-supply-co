@@ -21,23 +21,20 @@
 </header>
 
 <main id="main">
-  <div class="page-content">
-    <span class="eyebrow">Checkout</span>
-    <h1>Review &amp; Pay</h1>
-    <p>Double-check the size and color below, then pay securely with PayPal.</p>
-
-    <div id="checkout-items"></div>
-
-    <p id="checkout-empty" hidden style="color:var(--paper-dim);">
-      Your cart is empty. <a href="index.html" style="color:var(--brass);">Continue shopping</a>.
-    </p>
-
-    <div class="checkout-total" id="checkout-total-row">
-      <span>Total</span>
-      <span class="amount" id="checkout-total-amount"></span>
+  <div class="checkout-wrap">
+    <div class="checkout-main">
+      <h1>Shopping Cart</h1>
+      <div id="checkout-items"></div>
+      <p id="checkout-empty" hidden style="color:var(--paper-dim);">
+        Your cart is empty. <a href="index.html" style="color:var(--brass);">Continue shopping</a>.
+      </p>
     </div>
 
-    <div class="paypal-wrap" id="paypal-button-container"></div>
+    <aside class="checkout-summary">
+      <p class="free-ship-note" id="free-ship-note"></p>
+      <div class="summary-subtotal" id="summary-subtotal"></div>
+      <div class="paypal-wrap" id="paypal-button-container"></div>
+    </aside>
   </div>
 </main>
 
@@ -69,105 +66,193 @@
 <script src="https://www.paypal.com/sdk/js?client-id=BAA_9gP4AL6GfEdGqw8_JTLT4hYGFQKa8uLha7H7CEMaKKhMPPRfxdgEXr-lju6YA_XOX3BJ74M6L-XaHo&enable-funding=venmo&currency=USD&intent=capture"></script>
 <script>
 (function () {
-  var buyNowRaw = sessionStorage.getItem("meritBuyNow");
-  var mode = "cart";
-  var rawItems = getCart();
-  if (buyNowRaw) {
-    try {
-      rawItems = [JSON.parse(buyNowRaw)];
-      mode = "buyNow";
-    } catch (e) {
-      rawItems = getCart();
-      mode = "cart";
-    }
-  }
-
   var listEl = document.getElementById("checkout-items");
   var emptyEl = document.getElementById("checkout-empty");
-  var totalRow = document.getElementById("checkout-total-row");
-  var totalAmountEl = document.getElementById("checkout-total-amount");
+  var summaryEl = document.querySelector(".checkout-summary");
+  var freeShipEl = document.getElementById("free-ship-note");
+  var subtotalEl = document.getElementById("summary-subtotal");
+  var paypalContainer = document.getElementById("paypal-button-container");
+  var stockData = {};
 
-  var lineItems = rawItems.map(function (item) {
-    var product = PRODUCTS[item.id];
-    if (!product) return null;
-    var imageIndex = (product.colorImageIndex && product.colorImageIndex[item.color] !== undefined)
-      ? product.colorImageIndex[item.color]
-      : 0;
-    return {
-      id: item.id,
-      name: product.name,
-      price: product.price,
-      image: product.images[imageIndex],
-      size: item.size,
-      color: item.color,
-      qty: item.qty,
-    };
-  }).filter(Boolean);
-
-  if (lineItems.length === 0) {
-    emptyEl.hidden = false;
-    listEl.hidden = true;
-    totalRow.hidden = true;
-    document.getElementById("paypal-button-container").hidden = true;
-    return;
+  function getState() {
+    var buyNowRaw = sessionStorage.getItem("meritBuyNow");
+    if (buyNowRaw) {
+      try {
+        return { mode: "buyNow", items: [JSON.parse(buyNowRaw)] };
+      } catch (e) {}
+    }
+    return { mode: "cart", items: getCart() };
   }
 
-  var total = 0;
-  lineItems.forEach(function (li) {
-    total += li.price * li.qty;
-    var metaParts = [];
-    if (li.size) metaParts.push("Size " + li.size);
-    if (li.color) metaParts.push(li.color);
-    metaParts.push("Qty " + li.qty);
+  function changeQty(state, origIndex, delta) {
+    var newItems = state.items.slice();
+    newItems[origIndex] = Object.assign({}, newItems[origIndex], {
+      qty: Math.max(1, newItems[origIndex].qty + delta),
+    });
+    if (state.mode === "buyNow") {
+      sessionStorage.setItem("meritBuyNow", JSON.stringify(newItems[0]));
+    } else {
+      saveCart(newItems);
+    }
+    render();
+  }
 
-    var row = document.createElement("div");
-    row.className = "checkout-line";
-    row.innerHTML =
-      '<img src="' + li.image + '" alt="">' +
-      '<div class="checkout-line-info"><div class="name">' + li.name + '</div><div class="meta">' + metaParts.join(" · ") + '</div></div>' +
-      '<div class="line-price">$' + (li.price * li.qty).toFixed(2) + '</div>';
-    listEl.appendChild(row);
-  });
-  totalAmountEl.textContent = "$" + total.toFixed(2);
+  function removeLine(state, origIndex) {
+    if (state.mode === "buyNow") {
+      sessionStorage.removeItem("meritBuyNow");
+    } else {
+      var newItems = state.items.slice();
+      newItems.splice(origIndex, 1);
+      saveCart(newItems);
+    }
+    render();
+  }
 
-  paypal.Buttons({
-    style: { layout: "vertical", color: "gold", shape: "rect", label: "paypal" },
-    createOrder: function (data, actions) {
-      return actions.order.create({
-        purchase_units: [{
-          amount: {
-            value: total.toFixed(2),
-            currency_code: "USD",
-            breakdown: {
-              item_total: { value: total.toFixed(2), currency_code: "USD" },
+  function stockHtmlFor(id) {
+    var info = stockData[id];
+    if (!info || !info.status || info.status === "in_stock") {
+      return '<div class="stock in-stock">In Stock</div>';
+    }
+    if (info.status === "low") {
+      return '<div class="stock low-stock">Only ' + info.count + ' left!</div>';
+    }
+    return '<div class="stock out-of-stock">Out of Stock</div>';
+  }
+
+  function render() {
+    var state = getState();
+    var lineItems = [];
+    state.items.forEach(function (item, origIndex) {
+      var product = PRODUCTS[item.id];
+      if (!product) return;
+      var imageIndex = (product.colorImageIndex && product.colorImageIndex[item.color] !== undefined)
+        ? product.colorImageIndex[item.color]
+        : 0;
+      lineItems.push({
+        origIndex: origIndex,
+        id: item.id,
+        name: product.name,
+        price: product.price,
+        image: product.images[imageIndex],
+        size: item.size,
+        color: item.color,
+        qty: item.qty,
+      });
+    });
+
+    listEl.innerHTML = "";
+
+    if (lineItems.length === 0) {
+      emptyEl.hidden = false;
+      listEl.hidden = true;
+      summaryEl.hidden = true;
+      return;
+    }
+    emptyEl.hidden = true;
+    listEl.hidden = false;
+    summaryEl.hidden = false;
+
+    var total = 0;
+    var itemCount = 0;
+    lineItems.forEach(function (li) {
+      total += li.price * li.qty;
+      itemCount += li.qty;
+
+      var metaParts = [];
+      if (li.size) metaParts.push("Size " + li.size);
+      if (li.color) metaParts.push(li.color);
+
+      var row = document.createElement("div");
+      row.className = "checkout-line";
+      row.innerHTML =
+        '<img src="' + li.image + '" alt="">' +
+        '<div class="checkout-line-info">' +
+          '<div class="name">' + li.name + '</div>' +
+          stockHtmlFor(li.id) +
+          (metaParts.length ? '<div class="meta">' + metaParts.join(" · ") + '</div>' : "") +
+          '<div class="checkout-line-actions">' +
+            '<span class="qty-stepper">' +
+              '<button type="button" data-action="dec" aria-label="Decrease quantity">&minus;</button>' +
+              '<span>' + li.qty + '</span>' +
+              '<button type="button" data-action="inc" aria-label="Increase quantity">+</button>' +
+            '</span>' +
+            '<button type="button" class="line-delete" data-action="remove">Delete</button>' +
+          '</div>' +
+        '</div>' +
+        '<div class="line-price">$' + (li.price * li.qty).toFixed(2) + '</div>';
+
+      row.querySelector('[data-action="dec"]').addEventListener("click", function () {
+        changeQty(state, li.origIndex, -1);
+      });
+      row.querySelector('[data-action="inc"]').addEventListener("click", function () {
+        changeQty(state, li.origIndex, 1);
+      });
+      row.querySelector('[data-action="remove"]').addEventListener("click", function () {
+        removeLine(state, li.origIndex);
+      });
+
+      listEl.appendChild(row);
+    });
+
+    if (total >= 75) {
+      freeShipEl.innerHTML = '<span class="check">&check;</span> Your order qualifies for <strong>FREE shipping</strong>.';
+    } else {
+      freeShipEl.innerHTML = 'Add <strong>$' + (75 - total).toFixed(2) + '</strong> more to qualify for free shipping.';
+    }
+
+    subtotalEl.innerHTML =
+      '<span>Subtotal (' + itemCount + ' item' + (itemCount === 1 ? "" : "s") + ')</span>' +
+      '<span class="amount">$' + total.toFixed(2) + '</span>';
+
+    paypalContainer.innerHTML = "";
+    paypal.Buttons({
+      style: { layout: "vertical", color: "gold", shape: "rect", label: "paypal" },
+      createOrder: function (data, actions) {
+        return actions.order.create({
+          purchase_units: [{
+            amount: {
+              value: total.toFixed(2),
+              currency_code: "USD",
+              breakdown: {
+                item_total: { value: total.toFixed(2), currency_code: "USD" },
+              },
             },
-          },
-          items: lineItems.map(function (li) {
-            var name = li.name;
-            var variant = [];
-            if (li.size) variant.push("Size " + li.size);
-            if (li.color) variant.push(li.color);
-            if (variant.length) name += " — " + variant.join(", ");
-            return {
-              name: name.slice(0, 127),
-              unit_amount: { value: li.price.toFixed(2), currency_code: "USD" },
-              quantity: String(li.qty),
-            };
-          }),
-        }],
-      });
-    },
-    onApprove: function (data, actions) {
-      return actions.order.capture().then(function () {
-        if (mode === "buyNow") {
-          sessionStorage.removeItem("meritBuyNow");
-        } else {
-          saveCart([]);
-        }
-        window.location.href = "thank-you.html";
-      });
-    },
-  }).render("#paypal-button-container");
+            items: lineItems.map(function (li) {
+              var name = li.name;
+              var variant = [];
+              if (li.size) variant.push("Size " + li.size);
+              if (li.color) variant.push(li.color);
+              if (variant.length) name += " — " + variant.join(", ");
+              return {
+                name: name.slice(0, 127),
+                unit_amount: { value: li.price.toFixed(2), currency_code: "USD" },
+                quantity: String(li.qty),
+              };
+            }),
+          }],
+        });
+      },
+      onApprove: function (data, actions) {
+        return actions.order.capture().then(function () {
+          if (state.mode === "buyNow") {
+            sessionStorage.removeItem("meritBuyNow");
+          } else {
+            saveCart([]);
+          }
+          window.location.href = "thank-you.html";
+        });
+      },
+    }).render("#paypal-button-container");
+  }
+
+  render();
+  fetch("stock-status.json")
+    .then(function (r) { return r.ok ? r.json() : {}; })
+    .catch(function () { return {}; })
+    .then(function (data) {
+      stockData = data;
+      render();
+    });
 })();
 </script>
 </body>
