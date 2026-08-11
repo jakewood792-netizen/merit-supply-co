@@ -243,12 +243,6 @@ footer{
 }
 
 /* checkout */
-.checkout-card{
-  display:grid; grid-template-columns:1fr 1fr; gap:40px;
-  margin-top:28px; align-items:start;
-}
-@media (max-width:640px){ .checkout-card{ grid-template-columns:1fr; gap:20px; } }
-
 .product-photo-btn{
   display:block; width:100%; padding:0; margin:0; border:1px solid var(--hairline); border-radius:6px;
   background:var(--ink-soft); cursor:zoom-in; position:relative; overflow:hidden;
@@ -260,9 +254,6 @@ footer{
   padding:5px 12px; border-radius:999px; letter-spacing:0.03em; pointer-events:none;
 }
 
-.checkout-details h2{ font-size:1.35rem; margin-bottom:8px; }
-.checkout-price{ color:var(--brass); font-size:1.1rem; margin:0 0 10px; }
-.checkout-note{ color:var(--paper-dim); font-size:0.85rem; margin:0 0 24px; line-height:1.6; }
 .paypal-wrap{
   max-width:280px; padding:18px; margin-top:4px;
   background:var(--ink-soft); border:1px solid var(--hairline); border-radius:8px;
