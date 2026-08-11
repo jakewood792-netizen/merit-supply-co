@@ -13,4 +13,28 @@ const PRODUCTS = {
     // Picking a color also jumps the photo slideshow to the matching image index.
     colorImageIndex: { "Blue": 0, "Black": 1 },
   },
+  "amber-spice": {
+    name: "Amber Spice EDP",
+    price: 29.00,
+    images: [],
+    sizes: [],
+    colors: [],
+    description: "A warm, woody-spicy amber scent with a bold, long-lasting trail. Inspired by Dior Sauvage.",
+  },
+  "citrus-cedar": {
+    name: "Citrus Cedar Cologne",
+    price: 32.00,
+    images: [],
+    sizes: [],
+    colors: [],
+    description: "Crisp citrus over cedarwood and soft aromatic herbs, fresh and understated. Inspired by Chanel Bleu de Chanel.",
+  },
+  "aquatic-bergamot": {
+    name: "Aquatic Bergamot EDP",
+    price: 36.00,
+    images: [],
+    sizes: [],
+    colors: [],
+    description: "A fresh, aquatic scent with bright bergamot and a clean marine finish. Inspired by Giorgio Armani Acqua di Gio.",
+  },
 };

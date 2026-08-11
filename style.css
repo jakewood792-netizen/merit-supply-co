@@ -280,6 +280,7 @@ footer{
   cursor:pointer; font-size:1.4rem;
 }
 .slide-arrow:hover{ border-color:var(--brass); color:var(--brass); background:rgba(20,18,14,0.85); }
+.slide-arrow[hidden]{ display:none; }
 .slide-prev{ left:12px; } .slide-next{ right:12px; }
 @media (max-width:640px){
   .pdp-media{ flex-direction:column-reverse; }
@@ -312,6 +313,11 @@ footer{
 .pdp-actions .btn{ flex:1; min-width:140px; justify-content:center; }
 .pdp-message{ margin-top:14px; font-size:0.85rem; min-height:1.2em; color:#d98c8c; }
 .pdp-message.success{ color:#8fbf8f; }
+.pdp-description{ color:var(--paper-dim); font-size:0.92rem; line-height:1.6; margin:0 0 20px; }
+.pdp-no-photo{
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  color:var(--paper-dim); font-size:0.85rem;
+}
 
 /* checkout — cart-style layout */
 .checkout-wrap{

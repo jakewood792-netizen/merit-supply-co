@@ -50,6 +50,12 @@ if (pdp && typeof PRODUCTS !== "undefined") {
     document.getElementById("pdp-name").textContent = product.name;
     document.getElementById("pdp-price").textContent = "$" + product.price.toFixed(2);
 
+    if (product.description) {
+      const descEl = document.getElementById("pdp-description");
+      descEl.textContent = product.description;
+      descEl.hidden = false;
+    }
+
     fetch("stock-status.json")
       .then((r) => (r.ok ? r.json() : {}))
       .catch(() => ({}))
@@ -101,6 +107,13 @@ if (pdp && typeof PRODUCTS !== "undefined") {
       thumbs.forEach((thumb, i) => thumb.classList.toggle("active", i === slideIndex));
     }
 
+    if (slideImages.length === 0) {
+      const placeholder = document.createElement("div");
+      placeholder.className = "pdp-no-photo";
+      placeholder.textContent = "Photo coming soon";
+      slideshow.insertBefore(placeholder, slidePrev);
+    }
+
     if (slideImages.length > 1) {
       slidePrev.addEventListener("click", () => showSlide(slideIndex - 1));
       slideNext.addEventListener("click", () => showSlide(slideIndex + 1));
@@ -113,8 +126,12 @@ if (pdp && typeof PRODUCTS !== "undefined") {
     let selectedSize = null;
     let selectedColor = null;
 
+    const sizeSection = document.getElementById("pdp-size-section");
+    if (!product.sizes || product.sizes.length === 0) {
+      sizeSection.hidden = true;
+    }
     const sizeRow = document.getElementById("pdp-sizes");
-    product.sizes.forEach((size) => {
+    (product.sizes || []).forEach((size) => {
       const btn = document.createElement("button");
       btn.type = "button";
       btn.className = "option-btn";
@@ -157,7 +174,7 @@ if (pdp && typeof PRODUCTS !== "undefined") {
     }
 
     function validateSelection() {
-      if (!selectedSize) {
+      if (product.sizes && product.sizes.length && !selectedSize) {
         setMessage("Please select a size.");
         return false;
       }
