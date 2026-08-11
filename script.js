@@ -50,6 +50,26 @@ if (pdp && typeof PRODUCTS !== "undefined") {
     document.getElementById("pdp-name").textContent = product.name;
     document.getElementById("pdp-price").textContent = "$" + product.price.toFixed(2);
 
+    fetch("stock-status.json")
+      .then((r) => (r.ok ? r.json() : {}))
+      .catch(() => ({}))
+      .then((stockData) => {
+        const info = stockData[id];
+        const stockEl = document.getElementById("pdp-stock");
+        if (!info || info.status === "in_stock" || !info.status) {
+          stockEl.textContent = "In Stock";
+          stockEl.className = "pdp-stock in-stock";
+        } else if (info.status === "low") {
+          stockEl.textContent = "Only " + info.count + " left!";
+          stockEl.className = "pdp-stock low-stock";
+        } else if (info.status === "out") {
+          stockEl.textContent = "Out of Stock";
+          stockEl.className = "pdp-stock out-of-stock";
+          document.getElementById("pdp-add-cart").disabled = true;
+          document.getElementById("pdp-buy-now").disabled = true;
+        }
+      });
+
     const slideshow = document.getElementById("pdp-slideshow");
     const slidePrev = document.getElementById("pdp-slide-prev");
     const slideNext = document.getElementById("pdp-slide-next");

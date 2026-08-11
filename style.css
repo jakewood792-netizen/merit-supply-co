@@ -288,7 +288,13 @@ footer{
 .pdp-grid{ display:grid; grid-template-columns:1fr 1fr; gap:40px; margin-top:8px; align-items:start; }
 @media (max-width:640px){ .pdp-grid{ grid-template-columns:1fr; gap:20px; } }
 .pdp-details h1{ font-size:1.6rem; margin-bottom:8px; }
-.pdp-price{ color:var(--brass); font-size:1.15rem; margin:0 0 22px; }
+.pdp-price{ color:var(--brass); font-size:1.15rem; margin:0 0 8px; }
+.pdp-stock{ font-size:0.85rem; font-weight:600; margin:0 0 20px; }
+.pdp-stock.in-stock{ color:#8fbf8f; }
+.pdp-stock.low-stock{ color:#e0a94c; }
+.pdp-stock.out-of-stock{ color:#d98c8c; }
+.btn:disabled{ opacity:0.45; cursor:not-allowed; }
+.btn:disabled:hover{ transform:none; }
 .option-group{ margin-bottom:22px; }
 .option-group .eyebrow{ margin-bottom:10px; display:block; }
 .option-row{ display:flex; flex-wrap:wrap; gap:8px; }
