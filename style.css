@@ -242,6 +242,63 @@ footer{
   max-width:1400px; margin:0 auto;
 }
 
+/* checkout */
+.checkout-card{
+  display:grid; grid-template-columns:1fr 1fr; gap:40px;
+  margin-top:28px; align-items:start;
+}
+@media (max-width:640px){ .checkout-card{ grid-template-columns:1fr; gap:20px; } }
+
+.product-photo-btn{
+  display:block; width:100%; padding:0; margin:0; border:1px solid var(--hairline); border-radius:6px;
+  background:var(--ink-soft); cursor:zoom-in; position:relative; overflow:hidden;
+}
+.checkout-img{ width:100%; aspect-ratio:4/5; object-fit:cover; display:block; }
+.photo-hint{
+  position:absolute; bottom:10px; left:50%; transform:translateX(-50%);
+  background:rgba(20,18,14,0.72); color:var(--paper); font-size:0.7rem;
+  padding:5px 12px; border-radius:999px; letter-spacing:0.03em; pointer-events:none;
+}
+
+.checkout-details h2{ font-size:1.35rem; margin-bottom:8px; }
+.checkout-price{ color:var(--brass); font-size:1.1rem; margin:0 0 10px; }
+.checkout-note{ color:var(--paper-dim); font-size:0.85rem; margin:0 0 24px; line-height:1.6; }
+.paypal-wrap{
+  max-width:280px; padding:18px; margin-top:4px;
+  background:var(--ink-soft); border:1px solid var(--hairline); border-radius:8px;
+}
+
+/* photo lightbox — tap-to-view, swipeable */
+.lightbox{
+  position:fixed; inset:0; background:rgba(10,9,7,0.94); z-index:200;
+  display:flex; align-items:center; justify-content:center;
+}
+.lightbox[hidden]{ display:none; }
+.lightbox-track{
+  display:flex; width:min(88vw,480px); aspect-ratio:4/5; overflow:hidden;
+  border-radius:6px; transition:transform .28s ease; touch-action:pan-y;
+}
+.lightbox-slide{ width:100%; flex:none; height:100%; object-fit:cover; }
+.lightbox-close{
+  position:absolute; top:18px; right:18px; background:none; border:none;
+  color:var(--paper); font-size:1.9rem; line-height:1; cursor:pointer; padding:6px;
+}
+.lightbox-close:hover{ color:var(--brass); }
+.lightbox-prev, .lightbox-next{
+  position:absolute; top:50%; transform:translateY(-50%);
+  background:rgba(239,233,220,0.08); border:1px solid var(--hairline); color:var(--paper);
+  width:40px; height:40px; border-radius:50%; align-items:center; justify-content:center;
+  cursor:pointer; font-size:1.4rem;
+}
+.lightbox-prev{ left:14px; } .lightbox-next{ right:14px; }
+.lightbox-prev:hover, .lightbox-next:hover{ border-color:var(--brass); color:var(--brass); }
+.lightbox-dots{
+  position:absolute; bottom:16px; left:50%; transform:translateX(-50%);
+  display:flex; gap:6px;
+}
+.lightbox-dot{ width:6px; height:6px; border-radius:50%; background:var(--paper-dim); }
+.lightbox-dot.active{ background:var(--brass); }
+
 /* simple page (policy/category placeholder) content */
 .page-content{
   max-width:760px; margin:0 auto; padding:56px clamp(16px,3vw,32px) 80px;

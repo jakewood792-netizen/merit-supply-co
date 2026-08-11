@@ -24,16 +24,33 @@
 <main id="main">
   <div class="page-content">
     <span class="eyebrow">Checkout</span>
-    <h1>Complete Your Order</h1>
-    <p>Review your item below, then pay securely with PayPal, Venmo, or card.</p>
+    <h1>Your Item</h1>
+    <p>Take a look at the photos below, then check out whenever you're ready.</p>
 
-    <div id="hoodie" style="border:1px solid var(--hairline); border-radius:6px; padding:24px; margin-top:24px;">
-      <h2 style="margin-top:0;">Heavyweight Oversized Hoodie</h2>
-      <p style="color:var(--brass); font-size:1.1rem; margin-bottom:16px;">$44.00</p>
-      <div id="paypal-container-LK7SH5R38VWN4"></div>
+    <div id="hoodie" class="checkout-card">
+      <div class="checkout-media">
+        <button type="button" class="product-photo-btn" data-gallery="hoodie" aria-label="View more photos of Heavyweight Oversized Hoodie">
+          <img src="images/hoodie.png" alt="Heavyweight Oversized Hoodie" class="checkout-img">
+          <span class="photo-hint">Tap to view photos</span>
+        </button>
+      </div>
+      <div class="checkout-details">
+        <h2>Heavyweight Oversized Hoodie</h2>
+        <p class="checkout-price">$44.00</p>
+        <p class="checkout-note">Secure checkout via PayPal, Venmo, or card.</p>
+        <div id="paypal-container-LK7SH5R38VWN4" class="paypal-wrap"></div>
+      </div>
     </div>
   </div>
 </main>
+
+<div class="lightbox" id="lightbox" hidden>
+  <button type="button" class="lightbox-close" aria-label="Close photo viewer">&times;</button>
+  <button type="button" class="lightbox-prev" aria-label="Previous photo">&lsaquo;</button>
+  <div class="lightbox-track"></div>
+  <button type="button" class="lightbox-next" aria-label="Next photo">&rsaquo;</button>
+  <div class="lightbox-dots"></div>
+</div>
 
 <footer>
   <div class="footer-grid">
