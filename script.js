@@ -83,7 +83,6 @@ if (pdp && typeof PRODUCTS !== "undefined") {
     if (slideImages.length > 1) {
       slidePrev.addEventListener("click", () => showSlide(slideIndex - 1));
       slideNext.addEventListener("click", () => showSlide(slideIndex + 1));
-      setInterval(() => showSlide(slideIndex + 1), 3500);
     } else {
       slidePrev.hidden = true;
       slideNext.hidden = true;
