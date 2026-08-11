@@ -53,7 +53,7 @@ if (pdp && typeof PRODUCTS !== "undefined") {
     const slideshow = document.getElementById("pdp-slideshow");
     const slidePrev = document.getElementById("pdp-slide-prev");
     const slideNext = document.getElementById("pdp-slide-next");
-    const slideDots = document.getElementById("pdp-slide-dots");
+    const thumbsWrap = document.getElementById("pdp-thumbs");
     let slideIndex = 0;
     const slideImages = product.images.map((src, i) => {
       const img = document.createElement("img");
@@ -64,20 +64,21 @@ if (pdp && typeof PRODUCTS !== "undefined") {
       return img;
     });
 
-    const dots = product.images.map((_, i) => {
-      const dot = document.createElement("button");
-      dot.type = "button";
-      dot.className = "slide-dot" + (i === 0 ? " active" : "");
-      dot.setAttribute("aria-label", "Show photo " + (i + 1));
-      dot.addEventListener("click", () => showSlide(i));
-      slideDots.appendChild(dot);
-      return dot;
+    const thumbs = product.images.map((src, i) => {
+      const thumb = document.createElement("button");
+      thumb.type = "button";
+      thumb.className = "pdp-thumb" + (i === 0 ? " active" : "");
+      thumb.setAttribute("aria-label", "Show photo " + (i + 1));
+      thumb.innerHTML = '<img src="' + src + '" alt="">';
+      thumb.addEventListener("click", () => showSlide(i));
+      thumbsWrap.appendChild(thumb);
+      return thumb;
     });
 
     function showSlide(index) {
       slideIndex = (index + slideImages.length) % slideImages.length;
       slideImages.forEach((img, i) => img.classList.toggle("active", i === slideIndex));
-      dots.forEach((dot, i) => dot.classList.toggle("active", i === slideIndex));
+      thumbs.forEach((thumb, i) => thumb.classList.toggle("active", i === slideIndex));
     }
 
     if (slideImages.length > 1) {
@@ -86,6 +87,7 @@ if (pdp && typeof PRODUCTS !== "undefined") {
     } else {
       slidePrev.hidden = true;
       slideNext.hidden = true;
+      thumbsWrap.hidden = true;
     }
 
     let selectedSize = null;
