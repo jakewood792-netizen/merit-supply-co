@@ -181,6 +181,9 @@ main{ min-width:0; }
 .category-head .eyebrow{ margin-bottom:6px; display:block; }
 .see-all{ font-size:0.82rem; color:var(--brass); white-space:nowrap; }
 .see-all:hover{ text-decoration:underline; }
+.shipping-note{ font-size:0.85rem; color:var(--paper-dim); margin:8px 0 0; }
+.shipping-note a{ color:var(--brass); }
+.shipping-note a:hover{ text-decoration:underline; }
 
 .card-row{
   display:grid; grid-auto-flow:column; grid-auto-columns:minmax(210px,1fr);
