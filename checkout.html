@@ -7,7 +7,6 @@
 <link rel="icon" type="image/png" href="brand-assets/favicon.png">
 <link rel="apple-touch-icon" href="brand-assets/apple-touch-icon.png">
 <link rel="stylesheet" href="style.css">
-<script src="https://www.paypal.com/sdk/js?client-id=BAA_9gP4AL6GfEdGqw8_JTLT4hYGFQKa8uLha7H7CEMaKKhMPPRfxdgEXr-lju6YA_XOX3BJ74M6L-XaHo&components=hosted-buttons&enable-funding=venmo&currency=USD"></script>
 </head>
 <body>
 
@@ -24,33 +23,23 @@
 <main id="main">
   <div class="page-content">
     <span class="eyebrow">Checkout</span>
-    <h1>Your Item</h1>
-    <p>Take a look at the photos below, then check out whenever you're ready.</p>
+    <h1>Review &amp; Pay</h1>
+    <p>Double-check the size and color below, then pay securely with PayPal.</p>
 
-    <div id="hoodie" class="checkout-card">
-      <div class="checkout-media">
-        <button type="button" class="product-photo-btn" data-gallery="hoodie" aria-label="View more photos of Heavyweight Oversized Hoodie">
-          <img src="images/hoodie.png" alt="Heavyweight Oversized Hoodie" class="checkout-img">
-          <span class="photo-hint">Tap to view photos</span>
-        </button>
-      </div>
-      <div class="checkout-details">
-        <h2>Heavyweight Oversized Hoodie</h2>
-        <p class="checkout-price">$44.00</p>
-        <p class="checkout-note">Secure checkout via PayPal, Venmo, or card.</p>
-        <div id="paypal-container-LK7SH5R38VWN4" class="paypal-wrap"></div>
-      </div>
+    <div id="checkout-items"></div>
+
+    <p id="checkout-empty" hidden style="color:var(--paper-dim);">
+      Your cart is empty. <a href="index.html" style="color:var(--brass);">Continue shopping</a>.
+    </p>
+
+    <div class="checkout-total" id="checkout-total-row">
+      <span>Total</span>
+      <span class="amount" id="checkout-total-amount"></span>
     </div>
+
+    <div class="paypal-wrap" id="paypal-button-container"></div>
   </div>
 </main>
-
-<div class="lightbox" id="lightbox" hidden>
-  <button type="button" class="lightbox-close" aria-label="Close photo viewer">&times;</button>
-  <button type="button" class="lightbox-prev" aria-label="Previous photo">&lsaquo;</button>
-  <div class="lightbox-track"></div>
-  <button type="button" class="lightbox-next" aria-label="Next photo">&rsaquo;</button>
-  <div class="lightbox-dots"></div>
-</div>
 
 <footer>
   <div class="footer-grid">
@@ -75,11 +64,108 @@
   <div class="footer-bottom"><span>&copy; <span id="year"></span> Merit Supply Co. All rights reserved.</span></div>
 </footer>
 
-<script>
-  paypal.HostedButtons({
-    hostedButtonId: "LK7SH5R38VWN4",
-  }).render("#paypal-container-LK7SH5R38VWN4");
-</script>
+<script src="products-data.js"></script>
 <script src="script.js"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=BAA_9gP4AL6GfEdGqw8_JTLT4hYGFQKa8uLha7H7CEMaKKhMPPRfxdgEXr-lju6YA_XOX3BJ74M6L-XaHo&enable-funding=venmo&currency=USD&intent=capture"></script>
+<script>
+(function () {
+  var buyNowRaw = sessionStorage.getItem("meritBuyNow");
+  var mode = "cart";
+  var rawItems = getCart();
+  if (buyNowRaw) {
+    try {
+      rawItems = [JSON.parse(buyNowRaw)];
+      mode = "buyNow";
+    } catch (e) {
+      rawItems = getCart();
+      mode = "cart";
+    }
+  }
+
+  var listEl = document.getElementById("checkout-items");
+  var emptyEl = document.getElementById("checkout-empty");
+  var totalRow = document.getElementById("checkout-total-row");
+  var totalAmountEl = document.getElementById("checkout-total-amount");
+
+  var lineItems = rawItems.map(function (item) {
+    var product = PRODUCTS[item.id];
+    if (!product) return null;
+    return {
+      id: item.id,
+      name: product.name,
+      price: product.price,
+      image: product.images[0],
+      size: item.size,
+      color: item.color,
+      qty: item.qty,
+    };
+  }).filter(Boolean);
+
+  if (lineItems.length === 0) {
+    emptyEl.hidden = false;
+    listEl.hidden = true;
+    totalRow.hidden = true;
+    document.getElementById("paypal-button-container").hidden = true;
+    return;
+  }
+
+  var total = 0;
+  lineItems.forEach(function (li) {
+    total += li.price * li.qty;
+    var metaParts = [];
+    if (li.size) metaParts.push("Size " + li.size);
+    if (li.color) metaParts.push(li.color);
+    metaParts.push("Qty " + li.qty);
+
+    var row = document.createElement("div");
+    row.className = "checkout-line";
+    row.innerHTML =
+      '<img src="' + li.image + '" alt="">' +
+      '<div class="checkout-line-info"><div class="name">' + li.name + '</div><div class="meta">' + metaParts.join(" · ") + '</div></div>' +
+      '<div class="line-price">$' + (li.price * li.qty).toFixed(2) + '</div>';
+    listEl.appendChild(row);
+  });
+  totalAmountEl.textContent = "$" + total.toFixed(2);
+
+  paypal.Buttons({
+    style: { layout: "vertical", color: "gold", shape: "rect", label: "paypal" },
+    createOrder: function (data, actions) {
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+            value: total.toFixed(2),
+            currency_code: "USD",
+            breakdown: {
+              item_total: { value: total.toFixed(2), currency_code: "USD" },
+            },
+          },
+          items: lineItems.map(function (li) {
+            var name = li.name;
+            var variant = [];
+            if (li.size) variant.push("Size " + li.size);
+            if (li.color) variant.push(li.color);
+            if (variant.length) name += " — " + variant.join(", ");
+            return {
+              name: name.slice(0, 127),
+              unit_amount: { value: li.price.toFixed(2), currency_code: "USD" },
+              quantity: String(li.qty),
+            };
+          }),
+        }],
+      });
+    },
+    onApprove: function (data, actions) {
+      return actions.order.capture().then(function () {
+        if (mode === "buyNow") {
+          sessionStorage.removeItem("meritBuyNow");
+        } else {
+          saveCart([]);
+        }
+        window.location.href = "thank-you.html";
+      });
+    },
+  }).render("#paypal-button-container");
+})();
+</script>
 </body>
 </html>

@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fitness — Merit Supply Co.</title>
-<meta name="description" content="Fitness gear at Merit Supply Co. — vibration plates, Pilates rings, and home workout essentials.">
+<title>Product — Merit Supply Co.</title>
 <link rel="icon" type="image/png" href="brand-assets/favicon.png">
 <link rel="apple-touch-icon" href="brand-assets/apple-touch-icon.png">
 <link rel="stylesheet" href="style.css">
@@ -25,10 +24,10 @@
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.8-4 5-6 8-6s6.2 2 8 6"/></svg>
       Account
     </a>
-    <button class="icon-btn" aria-label="Cart">
+    <a class="icon-btn" href="checkout.html" aria-label="Cart">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M3 6h2l1.6 10.6a2 2 0 0 0 2 1.7h8.8a2 2 0 0 0 2-1.6L21 9H6"/><circle cx="10" cy="21" r="1"/><circle cx="18" cy="21" r="1"/></svg>
       Cart · <span data-cart-count>0</span>
-    </button>
+    </a>
   </div>
 </header>
 
@@ -36,7 +35,7 @@
   <a href="index.html">All</a>
   <a href="clothing.html">Clothing</a>
   <a href="fragrance.html">Fragrance</a>
-  <a href="fitness.html" class="active">Fitness</a>
+  <a href="fitness.html">Fitness</a>
   <a href="beauty.html">Beauty</a>
 </nav>
 
@@ -57,7 +56,7 @@
       <ul>
         <li><a href="clothing.html">Clothing</a></li>
         <li><a href="fragrance.html">Fragrance</a></li>
-        <li><a href="fitness.html" class="active">Fitness</a></li>
+        <li><a href="fitness.html">Fitness</a></li>
         <li><a href="beauty.html">Beauty</a></li>
       </ul>
     </div>
@@ -80,31 +79,45 @@
   </aside>
 
   <main id="main">
-    <section class="category-section" style="padding-top:40px;" aria-labelledby="fitness-h">
-      <div class="category-head">
-        <div><span class="eyebrow">Category</span><h2 id="fitness-h" style="font-size:2rem;">Fitness</h2></div>
+    <div class="page-content" id="pdp" style="max-width:1000px;">
+      <div class="pdp-grid">
+        <div class="pdp-media">
+          <button type="button" class="product-photo-btn" id="pdp-gallery-btn" data-gallery="" aria-label="View more photos">
+            <img src="" alt="" class="checkout-img" id="pdp-img">
+            <span class="photo-hint">Tap to view photos</span>
+          </button>
+        </div>
+        <div class="pdp-details">
+          <h1 id="pdp-name"></h1>
+          <p class="pdp-price" id="pdp-price"></p>
+
+          <div class="option-group">
+            <span class="eyebrow">Size</span>
+            <div class="option-row" id="pdp-sizes"></div>
+          </div>
+
+          <div class="option-group" id="pdp-color-section" hidden>
+            <span class="eyebrow">Color</span>
+            <div class="option-row" id="pdp-colors"></div>
+          </div>
+
+          <div class="pdp-actions">
+            <button type="button" class="btn btn-ghost" id="pdp-add-cart">Add to Cart</button>
+            <button type="button" class="btn btn-primary" id="pdp-buy-now">Buy Now</button>
+          </div>
+          <p class="pdp-message" id="pdp-message"></p>
+        </div>
       </div>
-      <div class="card-row" style="grid-auto-flow:row; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); display:grid;">
-        <article class="card">
-          <div class="card-media m-fitness"><span class="tag">Viral</span></div>
-          <div class="card-body"><div class="name">Compact Vibration Plate</div><div class="price">$79.00</div></div>
-        </article>
-        <article class="card">
-          <div class="card-media m-fitness"></div>
-          <div class="card-body"><div class="name">Foldable Pilates Ring Set</div><div class="price">$22.00</div></div>
-        </article>
-        <article class="card">
-          <div class="card-media m-fitness"></div>
-          <div class="card-body"><div class="name">Adjustable Ankle Weights</div><div class="price">$25.00</div></div>
-        </article>
-        <article class="card">
-          <div class="card-media m-fitness"></div>
-          <div class="card-body"><div class="name">Non-Slip Foldable Yoga Mat</div><div class="price">$38.00</div></div>
-        </article>
-      </div>
-      <div class="coming-soon">More fitness gear arriving soon — full catalog going live as suppliers are finalized.</div>
-    </section>
+    </div>
   </main>
+</div>
+
+<div class="lightbox" id="lightbox" hidden>
+  <button type="button" class="lightbox-close" aria-label="Close photo viewer">&times;</button>
+  <button type="button" class="lightbox-prev" aria-label="Previous photo">&lsaquo;</button>
+  <div class="lightbox-track"></div>
+  <button type="button" class="lightbox-next" aria-label="Next photo">&rsaquo;</button>
+  <div class="lightbox-dots"></div>
 </div>
 
 <footer>
@@ -130,6 +143,7 @@
   <div class="footer-bottom"><span>&copy; <span id="year"></span> Merit Supply Co. All rights reserved.</span></div>
 </footer>
 
+<script src="products-data.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
