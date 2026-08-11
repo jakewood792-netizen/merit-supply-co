@@ -36,91 +36,6 @@ function updateCartBadge() {
 }
 updateCartBadge();
 
-// ---- Product photo gallery (tap-to-view, swipeable lightbox) -------------
-const lightbox = document.getElementById("lightbox");
-if (lightbox) {
-  const track = lightbox.querySelector(".lightbox-track");
-  const dotsWrap = lightbox.querySelector(".lightbox-dots");
-  const prevBtn = lightbox.querySelector(".lightbox-prev");
-  const nextBtn = lightbox.querySelector(".lightbox-next");
-  let slideIndex = 0;
-  let slideCount = 0;
-
-  function updateSlide() {
-    track.style.transform = `translateX(-${slideIndex * 100}%)`;
-    [...dotsWrap.children].forEach((dot, i) => dot.classList.toggle("active", i === slideIndex));
-  }
-
-  function goToSlide(delta) {
-    slideIndex = (slideIndex + delta + slideCount) % slideCount;
-    updateSlide();
-  }
-
-  function openGallery(key) {
-    const product = typeof PRODUCTS !== "undefined" ? PRODUCTS[key] : null;
-    const images = product && product.images;
-    if (!images || images.length === 0) return;
-
-    track.innerHTML = "";
-    dotsWrap.innerHTML = "";
-    images.forEach((src) => {
-      const img = document.createElement("img");
-      img.src = src;
-      img.className = "lightbox-slide";
-      img.alt = "";
-      track.appendChild(img);
-
-      const dot = document.createElement("span");
-      dot.className = "lightbox-dot";
-      dotsWrap.appendChild(dot);
-    });
-
-    slideIndex = 0;
-    slideCount = images.length;
-    const multiple = slideCount > 1;
-    prevBtn.style.display = multiple ? "flex" : "none";
-    nextBtn.style.display = multiple ? "flex" : "none";
-    dotsWrap.style.display = multiple ? "flex" : "none";
-    updateSlide();
-
-    lightbox.hidden = false;
-    document.body.style.overflow = "hidden";
-  }
-
-  function closeGallery() {
-    lightbox.hidden = true;
-    document.body.style.overflow = "";
-  }
-
-  document.querySelectorAll("[data-gallery]").forEach((btn) => {
-    btn.addEventListener("click", () => openGallery(btn.dataset.gallery));
-  });
-
-  prevBtn.addEventListener("click", () => goToSlide(-1));
-  nextBtn.addEventListener("click", () => goToSlide(1));
-  lightbox.querySelector(".lightbox-close").addEventListener("click", closeGallery);
-  lightbox.addEventListener("click", (e) => {
-    if (e.target === lightbox) closeGallery();
-  });
-  document.addEventListener("keydown", (e) => {
-    if (lightbox.hidden) return;
-    if (e.key === "Escape") closeGallery();
-    if (e.key === "ArrowLeft") goToSlide(-1);
-    if (e.key === "ArrowRight") goToSlide(1);
-  });
-
-  let touchStartX = null;
-  track.addEventListener("touchstart", (e) => {
-    touchStartX = e.touches[0].clientX;
-  });
-  track.addEventListener("touchend", (e) => {
-    if (touchStartX === null) return;
-    const dx = e.changedTouches[0].clientX - touchStartX;
-    if (Math.abs(dx) > 40) goToSlide(dx < 0 ? 1 : -1);
-    touchStartX = null;
-  });
-}
-
 // ---- Product detail page (product.html?id=...) ---------------------------
 const pdp = document.getElementById("pdp");
 if (pdp && typeof PRODUCTS !== "undefined") {
@@ -134,9 +49,45 @@ if (pdp && typeof PRODUCTS !== "undefined") {
 
     document.getElementById("pdp-name").textContent = product.name;
     document.getElementById("pdp-price").textContent = "$" + product.price.toFixed(2);
-    document.getElementById("pdp-img").src = product.images[0];
-    document.getElementById("pdp-img").alt = product.name;
-    document.getElementById("pdp-gallery-btn").dataset.gallery = id;
+
+    const slideshow = document.getElementById("pdp-slideshow");
+    const slidePrev = document.getElementById("pdp-slide-prev");
+    const slideNext = document.getElementById("pdp-slide-next");
+    const slideDots = document.getElementById("pdp-slide-dots");
+    let slideIndex = 0;
+    const slideImages = product.images.map((src, i) => {
+      const img = document.createElement("img");
+      img.src = src;
+      img.alt = product.name;
+      img.className = "slide-photo" + (i === 0 ? " active" : "");
+      slideshow.insertBefore(img, slidePrev);
+      return img;
+    });
+
+    const dots = product.images.map((_, i) => {
+      const dot = document.createElement("button");
+      dot.type = "button";
+      dot.className = "slide-dot" + (i === 0 ? " active" : "");
+      dot.setAttribute("aria-label", "Show photo " + (i + 1));
+      dot.addEventListener("click", () => showSlide(i));
+      slideDots.appendChild(dot);
+      return dot;
+    });
+
+    function showSlide(index) {
+      slideIndex = (index + slideImages.length) % slideImages.length;
+      slideImages.forEach((img, i) => img.classList.toggle("active", i === slideIndex));
+      dots.forEach((dot, i) => dot.classList.toggle("active", i === slideIndex));
+    }
+
+    if (slideImages.length > 1) {
+      slidePrev.addEventListener("click", () => showSlide(slideIndex - 1));
+      slideNext.addEventListener("click", () => showSlide(slideIndex + 1));
+      setInterval(() => showSlide(slideIndex + 1), 3500);
+    } else {
+      slidePrev.hidden = true;
+      slideNext.hidden = true;
+    }
 
     let selectedSize = null;
     let selectedColor = null;
