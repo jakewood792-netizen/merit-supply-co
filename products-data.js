@@ -40,8 +40,16 @@ const PRODUCTS = {
   "linen-shirt": {
     name: "Linen Short Sleeve Button Shirt",
     price: 29.99,
-    images: ["images/linen-shirt.png"],
+    images: [
+      "images/linen-shirt.png",
+      "images/linen-shirt-blue.png",
+      "images/linen-shirt-black.png",
+      "images/linen-shirt-gray.png",
+      "images/linen-shirt-white.png",
+    ],
     sizes: ["S", "M", "L", "XL", "XXL", "XXXL"],
     colors: ["Beige", "Blue", "Black", "Gray", "White"],
+    // Picking a color also jumps the photo slideshow to the matching image index.
+    colorImageIndex: { "Beige": 0, "Blue": 1, "Black": 2, "Gray": 3, "White": 4 },
   },
 };
