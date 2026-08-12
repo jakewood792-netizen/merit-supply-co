@@ -52,4 +52,26 @@ const PRODUCTS = {
     // Picking a color also jumps the photo slideshow to the matching image index.
     colorImageIndex: { "Beige": 0, "Blue": 1, "Black": 2, "Gray": 3, "White": 4 },
   },
+  "lined-tank-top": {
+    name: "Lined Tank Top",
+    price: 15.99,
+    images: [
+      "images/lined-tank-top.png",
+      "images/lined-tank-top-green.png",
+      "images/lined-tank-top-coffee.png",
+      "images/lined-tank-top-black.png",
+      "images/lined-tank-top-darkgrey.png",
+      "images/lined-tank-top-white.png",
+      "images/lined-tank-top-grey.png",
+      "images/lined-tank-top-pink.png",
+      "images/lined-tank-top-blue.png",
+    ],
+    sizes: ["M", "L", "XL", "XXL"],
+    colors: ["Brown", "Green", "Coffee", "Black", "Dark Grey", "White", "Grey", "Pink", "Blue"],
+    // Picking a color also jumps the photo slideshow to the matching image index.
+    colorImageIndex: {
+      "Brown": 0, "Green": 1, "Coffee": 2, "Black": 3, "Dark Grey": 4,
+      "White": 5, "Grey": 6, "Pink": 7, "Blue": 8,
+    },
+  },
 };
