@@ -37,4 +37,11 @@ const PRODUCTS = {
     colors: [],
     description: "A fresh, aquatic scent with bright bergamot and a clean marine finish. Inspired by Giorgio Armani Acqua di Gio.",
   },
+  "linen-shirt": {
+    name: "Linen Short Sleeve Button Shirt",
+    price: 29.99,
+    images: ["images/linen-shirt.png"],
+    sizes: ["S", "M", "L", "XL", "XXL", "XXXL"],
+    colors: ["Beige", "Blue", "Black", "Gray", "White"],
+  },
 };
