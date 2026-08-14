@@ -52,6 +52,38 @@ const PRODUCTS = {
     // Picking a color also jumps the photo slideshow to the matching image index.
     colorImageIndex: { "Beige": 0, "Blue": 1, "Black": 2, "Gray": 3, "White": 4 },
   },
+  "led-face-mask": {
+    name: "7-Color LED Light Therapy Face Mask",
+    price: 29.00,
+    images: [],
+    sizes: [],
+    colors: [],
+    description: "A 7-color LED light therapy mask for anti-aging, wrinkle reduction, and skin brightening — full-face coverage with adjustable light modes.",
+  },
+  "led-face-neck-mask": {
+    name: "7-Color LED Face & Neck Mask",
+    price: 49.00,
+    images: [],
+    sizes: [],
+    colors: [],
+    description: "A wraparound 7-color LED photon therapy mask covering face and neck for firming, anti-aging, and skin rejuvenation.",
+  },
+  "cupping-massager": {
+    name: "Electric Vacuum Cupping Massager",
+    price: 24.00,
+    images: [],
+    sizes: [],
+    colors: [],
+    description: "A rechargeable electric vacuum cupping massager with 12 heat/suction gears and an LCD display — cupping and gua sha therapy for back, neck, and arms.",
+  },
+  "cupping-set": {
+    name: "Cupping Therapy Set with Pump",
+    price: 19.00,
+    images: [],
+    sizes: [],
+    colors: [],
+    description: "A 12-piece manual cupping therapy set with hand pump and carrying case — traditional cupping for muscle relief and circulation.",
+  },
   "lined-tank-top": {
     name: "Lined Tank Top",
     price: 15.99,
