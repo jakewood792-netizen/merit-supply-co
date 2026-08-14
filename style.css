@@ -213,6 +213,7 @@ main{ min-width:0; }
 .m-fragrance{ background: linear-gradient(155deg,#241d15,#0f0d09); }
 .m-fitness{ background: linear-gradient(155deg,#1c2019,#0e100c); }
 .m-beauty{ background: linear-gradient(155deg,#241a1c,#120d0e); }
+.m-tech{ background: linear-gradient(155deg,#171b20,#0c0e10); }
 
 /* footer */
 footer{
