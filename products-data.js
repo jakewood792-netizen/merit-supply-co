@@ -284,19 +284,6 @@ const PRODUCTS = {
     colors: [],
     description: "A wearable bladeless neck fan with 8000mAh battery, LED display, and quiet 360° airflow — hands-free cooling for commuting, workouts, or outdoor days.",
   },
-  "smart-ring": {
-    name: "Smart Health Tracking Ring",
-    price: 49.00,
-    images: [
-      "images/smart-ring-ae.webp",
-      "images/smart-ring-ae-2.webp",
-      "images/smart-ring-ae-3.webp",
-      "images/smart-ring-ae-4.webp",
-    ],
-    sizes: [],
-    colors: [],
-    description: "A smart ring with charging dock — tracks sleep, heart rate, and multi-sport activity, IP68 and 5ATM waterproof.",
-  },
   "earbuds": {
     name: "Sport Wireless Earbuds",
     price: 34.00,
@@ -308,18 +295,6 @@ const PRODUCTS = {
     sizes: [],
     colors: [],
     description: "Sport wireless earbuds with LED power display, HiFi stereo sound, and a secure sweat-resistant fit — built-in mics for hands-free calls.",
-  },
-  "led-strip": {
-    name: "RGB LED Strip Lights with App Control",
-    price: 18.00,
-    images: [
-      "images/led-strip-ae.webp",
-      "images/led-strip-ae-2.webp",
-      "images/led-strip-ae-3.webp",
-    ],
-    sizes: [],
-    colors: [],
-    description: "App-controlled RGB LED strip lights — millions of colors, music sync, and remote control for bedroom, gaming setup, or room accent lighting.",
   },
   "bt-speaker": {
     name: "Portable Bluetooth Speaker",
