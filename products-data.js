@@ -55,7 +55,13 @@ const PRODUCTS = {
   "led-face-mask": {
     name: "7-Color LED Light Therapy Face Mask",
     price: 29.00,
-    images: [],
+    images: [
+      "images/led-face-mask.webp",
+      "images/led-face-mask-2.webp",
+      "images/led-face-mask-3.webp",
+      "images/led-face-mask-4.webp",
+      "images/led-face-mask-5.webp",
+    ],
     sizes: [],
     colors: [],
     description: "A 7-color LED light therapy mask for anti-aging, wrinkle reduction, and skin brightening — full-face coverage with adjustable light modes.",
@@ -63,7 +69,11 @@ const PRODUCTS = {
   "led-face-neck-mask": {
     name: "7-Color LED Face & Neck Mask",
     price: 49.00,
-    images: [],
+    images: [
+      "images/led-face-neck-mask.webp",
+      "images/led-face-neck-mask-2.webp",
+      "images/led-face-neck-mask-3.webp",
+    ],
     sizes: [],
     colors: [],
     description: "A wraparound 7-color LED photon therapy mask covering face and neck for firming, anti-aging, and skin rejuvenation.",
@@ -71,7 +81,13 @@ const PRODUCTS = {
   "cupping-massager": {
     name: "Electric Vacuum Cupping Massager",
     price: 24.00,
-    images: [],
+    images: [
+      "images/cupping-massager.webp",
+      "images/cupping-massager-2.webp",
+      "images/cupping-massager-3.webp",
+      "images/cupping-massager-4.webp",
+      "images/cupping-massager-5.webp",
+    ],
     sizes: [],
     colors: [],
     description: "A rechargeable electric vacuum cupping massager with 12 heat/suction gears and an LCD display — cupping and gua sha therapy for back, neck, and arms.",
@@ -79,7 +95,11 @@ const PRODUCTS = {
   "cupping-set": {
     name: "Cupping Therapy Set with Pump",
     price: 19.00,
-    images: [],
+    images: [
+      "images/cupping-set.webp",
+      "images/cupping-set-2.webp",
+      "images/cupping-set-3.webp",
+    ],
     sizes: [],
     colors: [],
     description: "A 12-piece manual cupping therapy set with hand pump and carrying case — traditional cupping for muscle relief and circulation.",
