@@ -96,6 +96,7 @@ const PRODUCTS = {
     name: "Cupping Therapy Set with Pump",
     price: 19.00,
     images: [
+      "images/cupping-set-temu-main.jpg",
       "images/cupping-set.webp",
       "images/cupping-set-2.webp",
       "images/cupping-set-3.webp",
