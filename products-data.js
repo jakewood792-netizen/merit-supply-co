@@ -4,6 +4,84 @@
 // "colors" can be left as [] for products that don't have a color choice —
 // the color picker on the product page just won't show up.
 const PRODUCTS = {
+  "pushup-board": {
+    name: "Foldable Push-Up Board Set",
+    price: 19.00,
+    images: [
+      "images/pushup-board-temu-main.jpg",
+      "images/pushup-board-ae.webp",
+      "images/pushup-board-ae-2.webp",
+      "images/pushup-board-ae-3.webp",
+      "images/pushup-board-ae-4.webp",
+    ],
+    sizes: [],
+    colors: [],
+    description: "A foldable multi-functional push-up board with handles — targets chest, shoulders, back, and triceps with color-coded hand positions, plus jump rope and resistance band accessories.",
+  },
+  "ab-roller": {
+    name: "Ab Roller Wheel",
+    price: 22.00,
+    images: [
+      "images/ab-roller-temu-main.jpg",
+      "images/ab-roller-ae.webp",
+      "images/ab-roller-ae-2.webp",
+      "images/ab-roller-ae-3.webp",
+      "images/ab-roller-ae-4.webp",
+    ],
+    sizes: [],
+    colors: [],
+    description: "A wide-wheel ab roller with non-slip handles and a sturdy, durable build — lightweight and easy to store for everyday core workouts.",
+  },
+  "mens-polo": {
+    name: "Contrast Collar Polo Shirt",
+    price: 29.99,
+    images: [
+      "images/mens-polo-ae-2.webp",
+      "images/mens-polo-ae.webp",
+      "images/mens-polo-ae-3.webp",
+      "images/mens-polo-ae-4.webp",
+    ],
+    sizes: ["M", "L", "XL", "XXL", "XXXL"],
+    colors: ["Dark Blue", "Light Blue", "White"],
+    colorImageIndex: { "Dark Blue": 0, "Light Blue": 1, "White": 2 },
+    description: "A short-sleeve polo shirt with a contrast-striped collar and cuffs, front pocket, and breathable anti-wrinkle fabric — clean, business-casual style.",
+  },
+  "mens-shorts": {
+    name: "Quick-Dry Zip Pocket Shorts",
+    price: 24.99,
+    images: [
+      "images/mens-shorts-ae.png",
+      "images/mens-shorts-ae-2.png",
+      "images/mens-shorts-ae-3.png",
+    ],
+    sizes: ["S", "M", "L", "XL", "XXL", "XXXL"],
+    colors: [],
+    description: "Quick-dry running and fitness shorts with a zip security pocket, drawstring waist, and mesh liner — built for training, not just lounging.",
+  },
+  "mens-knit-tee": {
+    name: "Ribbed Knit Crew Neck Tee",
+    price: 27.99,
+    images: [
+      "images/mens-knit-tee-ae.png",
+      "images/mens-knit-tee-ae-2.png",
+      "images/mens-knit-tee-ae-3.png",
+    ],
+    sizes: ["S", "M", "L", "XL", "XXL", "XXXL"],
+    colors: [],
+    description: "A ribbed knit crew neck tee with a relaxed, draped fit — soft basic knitwear that layers well or wears alone.",
+  },
+  "mens-tshirt": {
+    name: "Heavyweight Oversized Tee",
+    price: 26.99,
+    images: [
+      "images/mens-tshirt-ae.png",
+      "images/mens-tshirt-ae-2.png",
+      "images/mens-tshirt-ae-3.png",
+    ],
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    colors: [],
+    description: "A 280gsm heavyweight cotton oversized tee with a dropped shoulder — thick, structured fabric that holds its shape wash after wash.",
+  },
   hoodie: {
     name: "Heavyweight Oversized Hoodie",
     price: 44.00,
