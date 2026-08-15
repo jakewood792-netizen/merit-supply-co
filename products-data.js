@@ -526,4 +526,57 @@ const PRODUCTS = {
       "White": 5, "Grey": 6, "Pink": 7, "Blue": 8,
     },
   },
+  "womens-quickdry-tank": {
+    name: "UPF 80+ Quick Dry Tank Top",
+    price: 22.00,
+    images: [
+      "images/womens-quickdry-tank-ae.webp",
+      "images/womens-quickdry-tank-ae-2.webp",
+    ],
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    colors: [],
+    description: "A quick-dry, moisture-wicking tank top with UPF 80+ UV protection and a tie-back open design — built for yoga, running, and hot-weather wear.",
+  },
+  "womens-mesh-tank": {
+    name: "Mesh Racerback Workout Tank",
+    price: 24.00,
+    images: [
+      "images/womens-mesh-tank-ae.webp",
+      "images/womens-mesh-tank-ae-2.webp",
+    ],
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    colors: [],
+    description: "A lightweight mesh racerback tank with a high-low curved hem — breathable, quick-dry, and built for yoga or everyday wear.",
+  },
+  "womens-tube-top": {
+    name: "Strapless Tube Top",
+    price: 26.00,
+    images: [
+      "images/womens-tube-top-ae.webp",
+      "images/womens-tube-top-ae-2.webp",
+    ],
+    sizes: ["S", "M", "L", "XL"],
+    colors: [],
+    description: "A strapless, shock-absorbing tube top with a seamless quick-dry finish — stays securely in place for workouts or worn casually on its own.",
+  },
+  "womens-lace-tank": {
+    name: "Y2K Lace Trim Ribbed Tank",
+    price: 24.00,
+    images: [
+      "images/womens-lace-tank-ae.webp",
+    ],
+    sizes: [],
+    colors: [],
+    description: "A ribbed cotton-blend tank with delicate lace trim and a button placket — sweet, vintage-inspired Y2K styling, one size fits most.",
+  },
+  "womens-hooded-crop-tank": {
+    name: "Hooded Eyelet Crop Tank",
+    price: 20.00,
+    images: [
+      "images/womens-hooded-crop-tank-ae.webp",
+    ],
+    sizes: ["XS", "S", "M", "L", "XL"],
+    colors: [],
+    description: "A sleeveless hooded crop tank with eyelet ring detailing and a cowl neck — gothic Y2K streetwear styling.",
+  },
 };
