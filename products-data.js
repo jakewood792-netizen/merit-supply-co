@@ -128,6 +128,60 @@ const PRODUCTS = {
     colors: [],
     description: "A bold, smoky-sweet eau de parfum with a rich, long-lasting trail — full 3.6oz bottle. Inspired by Creed Aventus.",
   },
+  "mandarin-sky": {
+    name: "Odyssey Mandarin Sky EDP, 3.4oz",
+    price: 26.00,
+    images: [
+      "images/mandarin-sky-ae.webp",
+      "images/mandarin-sky-ae-2.webp",
+      "images/mandarin-sky-ae-3.webp",
+    ],
+    sizes: [],
+    colors: [],
+    description: "A bright, zesty mandarin-citrus eau de parfum with a warm, unisex base — full 3.4oz bottle in a distinctive travel-flask-style case.",
+  },
+  "dubai-chocolat": {
+    name: "Odyssey Dubai Chocolat EDP, 3.4oz",
+    price: 26.00,
+    images: [
+      "images/dubai-chocolat-ae.webp",
+      "images/dubai-chocolat-ae-2.webp",
+    ],
+    sizes: [],
+    colors: [],
+    description: "A rich gourmand eau de parfum layered with cocoa, hazelnut, and warm spice — full 3.4oz bottle, alcohol-free formula.",
+  },
+  "club-de-nuit-untold": {
+    name: "Club de Nuit Untold EDP, 3.6oz",
+    price: 32.00,
+    images: [
+      "images/club-de-nuit-untold-ae.webp",
+      "images/club-de-nuit-untold-ae-2.webp",
+    ],
+    sizes: [],
+    colors: [],
+    description: "A vibrant floral-fruity eau de parfum in an iridescent bottle, bold and long-lasting — full 3.6oz size.",
+  },
+  "yum-yum": {
+    name: "Delights Yum Yum EDP, 3.4oz",
+    price: 28.00,
+    images: [
+      "images/yum-yum-ae.webp",
+    ],
+    sizes: [],
+    colors: [],
+    description: "A sweet, fruity gourmand eau de parfum in a playful pink presentation — full 3.4oz bottle, alcohol-free formula.",
+  },
+  "hawas-pink": {
+    name: "Hawas For Her Pink EDP, 3.4oz",
+    price: 24.00,
+    images: [
+      "images/hawas-pink-ae.webp",
+    ],
+    sizes: [],
+    colors: [],
+    description: "A floral-fruity eau de parfum with a soft, long-lasting trail — full 100ml/3.4oz bottle, alcohol-free formula.",
+  },
   "linen-shirt": {
     name: "Linen Short Sleeve Button Shirt",
     price: 29.99,
