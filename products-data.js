@@ -579,4 +579,54 @@ const PRODUCTS = {
     colors: [],
     description: "A sleeveless hooded crop tank with eyelet ring detailing and a cowl neck — gothic Y2K streetwear styling.",
   },
+  "kids-cartoon-tee": {
+    name: "Cartoon Print Kids Tee",
+    price: 14.00,
+    images: [
+      "images/kids-cartoon-tee-ae.webp",
+    ],
+    sizes: ["9M", "12M", "18M", "24M", "3T", "4T", "5T", "6T", "7T"],
+    colors: [],
+    description: "A soft cotton crewneck tee with a playful cartoon print — simple, comfortable everyday basic for kids.",
+  },
+  "kids-dino-polo": {
+    name: "Dinosaur Print Kids Polo",
+    price: 22.00,
+    images: [
+      "images/kids-dino-polo-ae.webp",
+    ],
+    sizes: ["24M", "3T", "4T", "5T", "6T", "7T", "8T", "9T"],
+    colors: [],
+    description: "A breathable cotton polo with an all-over dinosaur print — moisture-wicking and anti-wrinkle for all-day play.",
+  },
+  "kids-mandarin-shirt": {
+    name: "Mandarin Collar Kids Shirt",
+    price: 26.00,
+    images: [
+      "images/kids-mandarin-shirt-ae.webp",
+    ],
+    sizes: ["2T", "3T", "4T", "6", "8", "10"],
+    colors: [],
+    description: "A cotton-blend short-sleeve shirt with a mandarin collar — a clean, dressier option for special occasions.",
+  },
+  "kids-tank-top": {
+    name: "Cartoon Print Kids Tank Top",
+    price: 12.00,
+    images: [
+      "images/kids-tank-top-ae.webp",
+    ],
+    sizes: ["12M", "24M", "3T", "4T", "6T", "8T", "10T"],
+    colors: [],
+    description: "A 100% cotton sleeveless tank with a playful cartoon print — lightweight and breathable for hot-weather wear.",
+  },
+  "kids-striped-polo": {
+    name: "Striped Kids Polo Shirt",
+    price: 20.00,
+    images: [
+      "images/kids-striped-polo-ae.webp",
+    ],
+    sizes: ["2T", "3T", "4T", "5", "6", "7", "8", "9", "10", "11", "12"],
+    colors: [],
+    description: "A classic striped polo shirt — soft, durable fabric built for school, beach days, or everyday wear.",
+  },
 };
