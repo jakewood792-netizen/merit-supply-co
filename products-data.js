@@ -115,6 +115,19 @@ const PRODUCTS = {
     colors: [],
     description: "A fresh, aquatic scent with bright bergamot and a clean marine finish. Inspired by Giorgio Armani Acqua di Gio.",
   },
+  "club-de-nuit": {
+    name: "Club de Nuit Iconic EDP, 3.6oz",
+    price: 29.00,
+    images: [
+      "images/club-de-nuit-ae.webp",
+      "images/club-de-nuit-ae-2.webp",
+      "images/club-de-nuit-ae-3.webp",
+      "images/club-de-nuit-ae-4.webp",
+    ],
+    sizes: [],
+    colors: [],
+    description: "A bold, smoky-sweet eau de parfum with a rich, long-lasting trail — full 3.6oz bottle. Inspired by Creed Aventus.",
+  },
   "linen-shirt": {
     name: "Linen Short Sleeve Button Shirt",
     price: 29.99,
