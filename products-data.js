@@ -94,7 +94,13 @@ const PRODUCTS = {
   "amber-spice": {
     name: "Amber Spice EDP",
     price: 29.00,
-    images: [],
+    images: [
+      "images/amber-spice.png",
+      "images/amber-spice-2.png",
+      "images/amber-spice-3.png",
+      "images/amber-spice-4.png",
+      "images/amber-spice-5.png",
+    ],
     sizes: [],
     colors: [],
     description: "A warm, woody-spicy amber scent with a bold, long-lasting trail. Inspired by Dior Sauvage.",
@@ -102,7 +108,12 @@ const PRODUCTS = {
   "citrus-cedar": {
     name: "Citrus Cedar Cologne",
     price: 32.00,
-    images: [],
+    images: [
+      "images/citrus-cedar.png",
+      "images/citrus-cedar-2.png",
+      "images/citrus-cedar-3.png",
+      "images/citrus-cedar-4.png",
+    ],
     sizes: [],
     colors: [],
     description: "Crisp citrus over cedarwood and soft aromatic herbs, fresh and understated. Inspired by Chanel Bleu de Chanel.",
@@ -110,7 +121,10 @@ const PRODUCTS = {
   "aquatic-bergamot": {
     name: "Aquatic Bergamot EDP",
     price: 36.00,
-    images: [],
+    images: [
+      "images/aquatic-bergamot.png",
+      "images/aquatic-bergamot-2.png",
+    ],
     sizes: [],
     colors: [],
     description: "A fresh, aquatic scent with bright bergamot and a clean marine finish. Inspired by Giorgio Armani Acqua di Gio.",
