@@ -614,6 +614,69 @@ const PRODUCTS = {
     colors: [],
     description: "Super-soft crossover high-waisted flare leggings with a side phone pocket and tummy-control fit — built for yoga, running, or everyday wear.",
   },
+  "teen-star-cargo-jeans": {
+    name: "Star Patch Wide-Leg Cargo Jeans",
+    price: 29.00,
+    images: [
+      "images/teen-star-cargo-jeans.png",
+      "images/teen-star-cargo-jeans-2.png",
+    ],
+    sizes: ["9-10Y", "11-12Y"],
+    colors: [],
+    description: "Wide-leg denim jeans with an elastic waist and star patch detailing at the knees and thighs — a trendy streetwear staple.",
+  },
+  "teen-lace-cargo-jeans": {
+    name: "Lace Patch Wide-Leg Jeans",
+    price: 34.00,
+    images: [
+      "images/teen-lace-cargo-jeans.png",
+      "images/teen-lace-cargo-jeans-2.png",
+    ],
+    sizes: ["5Y", "7Y", "9Y", "11Y", "13Y", "14Y"],
+    colors: [],
+    description: "Oversized wide-leg ripped jeans with floral lace patches and a drawstring waist sash — bold Y2K streetwear styling.",
+  },
+  "teen-cargo-sweatpants": {
+    name: "Oversized Cargo Sweatpants",
+    price: 26.00,
+    images: [
+      "images/teen-cargo-sweatpants.png",
+    ],
+    sizes: ["5T", "6T", "7-8T", "9-10T", "11-12T", "13-14T"],
+    colors: ["Gray", "Purple", "Black"],
+    colorImageIndex: { "Gray": 0, "Purple": 0, "Black": 0 },
+    description: "Loose workwear-style cargo sweatpants with an elastic drawstring waist and side pockets — lightweight and easy to move in.",
+  },
+  "teen-acid-wash-tee": {
+    name: "Y2K Acid Washed Graphic Tee",
+    price: 28.00,
+    images: [
+      "images/teen-acid-wash-tee.png",
+    ],
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    colors: [],
+    description: "An acid-washed oversized tee with a gothic graphic print — soft cotton with a vintage, worn-in streetwear look.",
+  },
+  "teen-swag-tank": {
+    name: "#SWAG Ribbed Tank Top",
+    price: 19.00,
+    images: [
+      "images/teen-swag-tank.png",
+    ],
+    sizes: ["S", "M", "L"],
+    colors: [],
+    description: "A ribbed cotton tank top with a bold #SWAG graphic — grunge Y2K style with a slim, cropped fit.",
+  },
+  "teen-dragon-tee": {
+    name: "Dragon & Tiger Graphic Tee",
+    price: 27.00,
+    images: [
+      "images/teen-dragon-tee.png",
+    ],
+    sizes: ["S(4)", "M(6)", "L(8/10)", "XL(12)"],
+    colors: [],
+    description: "A vintage-style graphic tee with a dragon and tiger print — 2000s Harajuku streetwear inspired.",
+  },
   "kids-cartoon-tee": {
     name: "Cartoon Print Kids Tee",
     price: 14.00,
