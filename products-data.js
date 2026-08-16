@@ -593,6 +593,27 @@ const PRODUCTS = {
     colors: [],
     description: "A sleeveless hooded crop tank with eyelet ring detailing and a cowl neck — gothic Y2K streetwear styling.",
   },
+  "satin-pajama-set": {
+    name: "Satin Pajama Set",
+    price: 32.00,
+    images: [
+      "images/satin-pajama-set.jpg",
+      "images/satin-pajama-set-2.png",
+    ],
+    sizes: ["S", "M", "L", "XL"],
+    colors: [],
+    description: "A button-down satin pajama top and shorts set with contrast piping and a bow-tie waistband — smooth, breathable sleepwear for warm nights.",
+  },
+  "flare-leggings": {
+    name: "Cross-Waist Flare Leggings",
+    price: 34.00,
+    images: [
+      "images/flare-leggings.png",
+    ],
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    colors: [],
+    description: "Super-soft crossover high-waisted flare leggings with a side phone pocket and tummy-control fit — built for yoga, running, or everyday wear.",
+  },
   "kids-cartoon-tee": {
     name: "Cartoon Print Kids Tee",
     price: 14.00,
