@@ -82,6 +82,19 @@ const PRODUCTS = {
     colors: [],
     description: "A 280gsm heavyweight cotton oversized tee with a dropped shoulder — thick, structured fabric that holds its shape wash after wash.",
   },
+  "mens-vintage-wash-tee": {
+    name: "Vintage Wash Oversized Tee",
+    price: 27.00,
+    images: [
+      "images/mens-vintage-wash-tee.png",
+      "images/mens-vintage-wash-tee-2.png",
+      "images/mens-vintage-wash-tee-3.png",
+    ],
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    colors: ["Green", "Gray", "Brown"],
+    colorImageIndex: { "Green": 0, "Gray": 1, "Brown": 2 },
+    description: "A garment-washed oversized tee with a faded, vintage look — loose drop-shoulder fit in soft, heavy cotton.",
+  },
   "amber-spice": {
     name: "Amber Spice EDP",
     price: 29.00,
