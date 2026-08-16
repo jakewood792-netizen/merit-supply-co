@@ -82,15 +82,6 @@ const PRODUCTS = {
     colors: [],
     description: "A 280gsm heavyweight cotton oversized tee with a dropped shoulder — thick, structured fabric that holds its shape wash after wash.",
   },
-  hoodie: {
-    name: "Heavyweight Oversized Hoodie",
-    price: 44.00,
-    images: ["images/hoodie.png", "images/hoodie-2.jpg", "images/hoodie-3.jpg"],
-    sizes: ["XS", "S", "M", "L", "XL", "XXL"],
-    colors: ["Blue", "Black"],
-    // Picking a color also jumps the photo slideshow to the matching image index.
-    colorImageIndex: { "Blue": 0, "Black": 1 },
-  },
   "amber-spice": {
     name: "Amber Spice EDP",
     price: 29.00,
